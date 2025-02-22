@@ -109,6 +109,8 @@ class bird:
         self.acc = vel_center*0.01 + vel_close*0.03 +average_vel
         pygame.draw.circle(self.win,(255,0,0),(pos_center.x,pos_center.y),1)
 
+    def update_obstacles(self,obstacles):
+        for i in 
 
     def draw(self):
         
