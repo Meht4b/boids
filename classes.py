@@ -110,7 +110,8 @@ class bird:
         pygame.draw.circle(self.win,(255,0,0),(pos_center.x,pos_center.y),1)
 
     def update_obstacles(self,obstacles):
-        for i in 
+        for i in obstacles:
+            pass
 
     def draw(self):
         
