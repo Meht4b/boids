@@ -7,7 +7,7 @@ window = pygame.display.set_mode((700,700))
 clock = pygame.time.Clock()
 
 
-a = flock(250,250,1000,100,window)
+a = flock(vector(250,500),vector(250,500),1000,100,window)
 
 while True:
 

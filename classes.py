@@ -115,7 +115,7 @@ class bird:
         pygame.draw.circle(self.win,(255,255,255),(self.pos.x,self.pos.y),2)
         
 class flock:
-    def __init__(self,win_h:int,win_w:int,bird_awareness_rad:int,flock_count:int,win):
+    def __init__(self,win_h:vector,win_w:vector,bird_awareness_rad:int,flock_count:int,win):
 
         self.win_h = win_h
         self.win_w = win_w
@@ -125,8 +125,8 @@ class flock:
         self.birds = []
 
         for i in range(flock_count):
-            self.birds.append(bird(vector(random.randint(0,win_w-1),random.randint(0,win_h-1)),self.bird_awareness_rad,win))
-            #self.birds.append(bird(vector(random.randint(0,win_w-1),100),self.bird_awareness_rad,win))
+            self.birds.append(bird(vector(random.randint(win_w.x,win_w.y-1),random.randint(win_h.x,win_h.y-1)),self.bird_awareness_rad,win))
+            
     
     def grid_reset(self):
         for i in range(math.ceil(self.win_h/self.bird_awareness_rad)):
