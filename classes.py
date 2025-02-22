@@ -69,10 +69,6 @@ class bird:
         if self.vel.magnitudeSquare()>4:
             self.acc += self.vel *-1
 
-        '''
-        elif self.vel.magnitudeSquare()<30:
-            self.acc += self.vel *0.5'''
-
         self.pos+=self.vel
         self.vel += self.acc
         self.acc = vector()
@@ -120,26 +116,17 @@ class bird:
         
 class flock:
     def __init__(self,win_h:int,win_w:int,bird_awareness_rad:int,flock_count:int,win):
-        self.birds_grid = []
+
         self.win_h = win_h
         self.win_w = win_w
         
-        
-        for i in range(math.ceil(win_h/bird_awareness_rad)):
-            self.birds_grid.append([])
-            for j in range(math.ceil(win_w/bird_awareness_rad)):
-                self.birds_grid[-1].append([])
-
         self.bird_awareness_rad = bird_awareness_rad
         self.flock_count = flock_count
         self.birds = []
 
-        
-
         for i in range(flock_count):
             self.birds.append(bird(vector(random.randint(0,win_w-1),random.randint(0,win_h-1)),self.bird_awareness_rad,win))
             #self.birds.append(bird(vector(random.randint(0,win_w-1),100),self.bird_awareness_rad,win))
-            self.birds_grid[int(self.birds[-1].pos.x//bird_awareness_rad)][int(self.birds[-1].pos.y//bird_awareness_rad)].append(self.birds[-1])
     
     def grid_reset(self):
         for i in range(math.ceil(self.win_h/self.bird_awareness_rad)):
@@ -150,36 +137,7 @@ class flock:
     def update(self):
         self.grid_reset
         #puts each bird into their respective grids
-        '''
-        for i in self.birds:
-            self.birds_grid[int(i.pos.x//self.bird_awareness_rad)][int(i.pos.y//self.bird_awareness_rad)].append(i)
-       
-        print('hhh')
-      
-        for i in range(len(self.birds_grid)):
-            for j in range(len(self.birds_grid[0])):
-                res = self.birds_grid[i][j] #temp list of birds in nearby grids 
-                if i>0:
-                    res.extend(self.birds_grid[i-1][j])                       
-                    if j<len(self.birds_grid[0])-1:
-                        res.extend(self.birds_grid[i-1][j+1])
-                    if j>0:
-                        res.extend(self.birds_grid[i-1][j-1])
-                if i<len(self.birds_grid)-1:
-                    res.extend(self.birds_grid[i+1][j])
-                    
-                    if j<len(self.birds_grid[0])-1:
-                        res.extend(self.birds_grid[i+1][j+1])
-                    if j>0:
-                        res.extend(self.birds_grid[i+1][j-1])
-                if j<len(self.birds_grid[0])-1:
-                    res.extend(self.birds_grid[i][j+1])
-                if j>0:
-                    res.extend(self.birds_grid[i][j-1])
-                
-                for k in range(len(self.birds_grid[i][j])):
-                    self.birds_grid[i][j][k].update(res)'''
-
+        
         for i in self.birds:
             i.update(self.birds)
         self.draw()
